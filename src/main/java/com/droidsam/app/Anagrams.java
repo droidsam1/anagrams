@@ -9,6 +9,10 @@ public class Anagrams {
             return Collections.emptyList();
         }
 
-        return List.of(input);
+        if (input.length() == 1) {
+            return List.of(input);
+        }
+
+        return List.of(input, new StringBuilder(input).reverse().toString());
     }
 }
