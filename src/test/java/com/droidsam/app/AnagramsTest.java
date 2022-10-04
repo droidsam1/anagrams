@@ -9,17 +9,17 @@ public class AnagramsTest {
 
 
     @Test
-    public void potentialAnagramsShouldReturnAListOfStrings() {
+    public void shouldReturnAListOfStrings() {
         Assertions.assertInstanceOf(List.class, Anagrams.getPotentialAnagramsFor(""));
     }
 
     @Test
-    public void potentialAnagramsShouldReturnAnEmptyListWhenInputIsEmpty() {
+    public void shouldReturnAnEmptyListWhenInputIsEmpty() {
         Assertions.assertTrue(Anagrams.getPotentialAnagramsFor("").isEmpty());
     }
 
     @Test
-    public void potentialAnagramsShouldReturnOneOutputWhenInputIsASingleCharacter() {
+    public void shouldReturnOneAnagramWhenInputIsASingleCharacter() {
         String input = "a";
         Assertions.assertEquals(1, Anagrams.getPotentialAnagramsFor(input).size());
         Assertions.assertEquals(input, Anagrams.getPotentialAnagramsFor(input).get(0));
