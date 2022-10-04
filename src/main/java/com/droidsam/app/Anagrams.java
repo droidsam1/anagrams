@@ -1,5 +1,6 @@
 package com.droidsam.app;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,6 +14,21 @@ public class Anagrams {
             return List.of(input);
         }
 
-        return List.of(input, new StringBuilder(input).reverse().toString());
+        List<String> anagrams = new ArrayList<>();
+
+        char[] characters = input.toCharArray();
+
+        for (int i = 0; i < characters.length; i++) {
+            char baseChar = characters[i];
+            StringBuilder newAnagram = new StringBuilder();
+            for (int x = 0; x < characters.length; x++) {
+                if (x != i) {
+                    newAnagram.append(characters[x]);
+                }
+            }
+            anagrams.add(baseChar + newAnagram.toString());
+        }
+
+        return anagrams;
     }
 }

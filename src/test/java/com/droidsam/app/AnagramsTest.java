@@ -29,7 +29,7 @@ public class AnagramsTest {
     public void shouldReturnTwoAnagramsWhenInputIsTwoCharacters() {
         String input = "ab";
         Assertions.assertEquals(2, Anagrams.getPotentialAnagramsFor(input).size());
-        Assertions.assertTrue(Anagrams.getPotentialAnagramsFor(input).contains("ab"));
-        Assertions.assertTrue(Anagrams.getPotentialAnagramsFor(input).contains("ba"));
+        Assertions.assertEquals("ab", Anagrams.getPotentialAnagramsFor(input).stream().filter(a -> a.equals("ab")).findFirst().orElseThrow());
+        Assertions.assertEquals("ba", Anagrams.getPotentialAnagramsFor(input).stream().filter(a -> a.equals("ba")).findFirst().orElseThrow());
     }
 }
