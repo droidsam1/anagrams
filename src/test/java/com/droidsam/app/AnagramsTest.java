@@ -21,15 +21,26 @@ public class AnagramsTest {
     @Test
     public void shouldReturnOneAnagramWhenInputIsASingleCharacter() {
         String input = "a";
-        Assertions.assertEquals(1, Anagrams.getPotentialAnagramsFor(input).size());
-        Assertions.assertEquals(input, Anagrams.getPotentialAnagramsFor(input).get(0));
+
+        List<String> resultAnagrams = Anagrams.getPotentialAnagramsFor(input);
+
+        Assertions.assertEquals(1, resultAnagrams.size());
+
+        assertContains(resultAnagrams, input);
     }
 
     @Test
     public void shouldReturnTwoAnagramsWhenInputIsTwoCharacters() {
         String input = "ab";
-        Assertions.assertEquals(2, Anagrams.getPotentialAnagramsFor(input).size());
-        Assertions.assertEquals("ab", Anagrams.getPotentialAnagramsFor(input).stream().filter(a -> a.equals("ab")).findFirst().orElseThrow());
-        Assertions.assertEquals("ba", Anagrams.getPotentialAnagramsFor(input).stream().filter(a -> a.equals("ba")).findFirst().orElseThrow());
+
+        List<String> resultAnagrams = Anagrams.getPotentialAnagramsFor(input);
+
+        Assertions.assertEquals(2, resultAnagrams.size());
+        assertContains(resultAnagrams, "ab");
+        assertContains(resultAnagrams, "ba");
+    }
+
+    private void assertContains(List<String> resultAnagrams, String valueToBeContained) {
+        Assertions.assertEquals(valueToBeContained, resultAnagrams.stream().filter(a -> a.equals(valueToBeContained)).findFirst().orElseThrow());
     }
 }
