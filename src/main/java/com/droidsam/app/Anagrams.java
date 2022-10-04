@@ -27,6 +27,9 @@ public class Anagrams {
                 }
             }
             anagrams.add(baseChar + newAnagram.toString());
+            if(characters.length > 2) {
+                anagrams.add(baseChar + newAnagram.reverse().toString());
+            }
         }
 
         return anagrams;
