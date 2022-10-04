@@ -17,4 +17,11 @@ public class AnagramsTest {
     public void potentialAnagramsShouldReturnAnEmptyListWhenInputIsEmpty() {
         Assertions.assertTrue(Anagrams.getPotentialAnagramsFor("").isEmpty());
     }
+
+    @Test
+    public void potentialAnagramsShouldReturnOneOutputWhenInputIsASingleCharacter() {
+        String input = "a";
+        Assertions.assertEquals(1, Anagrams.getPotentialAnagramsFor(input).size());
+        Assertions.assertEquals(input, Anagrams.getPotentialAnagramsFor(input).get(0));
+    }
 }
