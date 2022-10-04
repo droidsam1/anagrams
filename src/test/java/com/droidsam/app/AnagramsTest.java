@@ -12,4 +12,9 @@ public class AnagramsTest {
     public void potentialAnagramsShouldReturnAListOfStrings() {
         Assertions.assertInstanceOf(List.class, Anagrams.getPotentialAnagramsFor(""));
     }
+
+    @Test
+    public void potentialAnagramsShouldReturnAnEmptyListWhenInputIsEmpty() {
+        Assertions.assertTrue(Anagrams.getPotentialAnagramsFor("").isEmpty());
+    }
 }
