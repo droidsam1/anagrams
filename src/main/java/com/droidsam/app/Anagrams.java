@@ -14,24 +14,34 @@ public class Anagrams {
             return List.of(input);
         }
 
+        return getAnagramsFor(input.toCharArray());
+    }
+
+    private static List<String> getAnagramsFor(char[] inputChars) {
+
         List<String> anagrams = new ArrayList<>();
-
-        char[] characters = input.toCharArray();
-
-        for (int i = 0; i < characters.length; i++) {
-            char baseChar = characters[i];
-            StringBuilder newAnagram = new StringBuilder();
-            for (int x = 0; x < characters.length; x++) {
-                if (x != i) {
-                    newAnagram.append(characters[x]);
-                }
-            }
-            anagrams.add(baseChar + newAnagram.toString());
-            if(characters.length > 2) {
-                anagrams.add(baseChar + newAnagram.reverse().toString());
+        if (inputChars.length == 2) {
+            anagrams.add("" + inputChars[0] + inputChars[1]);
+            anagrams.add("" + inputChars[1] + inputChars[0]);
+            return anagrams;
+        } else {
+            for (int i = 0; i < inputChars.length; i++) {
+                char c = inputChars[i];
+                getAnagramsFor(getSameArrayExceptCharAtPosition(inputChars, i)).forEach(anagram -> anagrams.add(c + anagram));
             }
         }
-
         return anagrams;
     }
+
+    private static char[] getSameArrayExceptCharAtPosition(char[] inputArray, int positionToFilter) {
+        char[] result = new char[inputArray.length - 1];
+        int resultPosition = 0;
+        for (int i = 0; i < inputArray.length; i++) {
+            if (i != positionToFilter) {
+                result[resultPosition++] = inputArray[i];
+            }
+        }
+        return result;
+    }
+
 }

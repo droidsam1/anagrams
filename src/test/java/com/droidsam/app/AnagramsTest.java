@@ -55,6 +55,44 @@ public class AnagramsTest {
         assertContains(resultAnagrams, "cab");
     }
 
+
+    @Test
+    public void shouldReturnTwentyFourAnagramsWhenInputIsFourCharacters() {
+        String input = "biro";
+
+        List<String> resultAnagrams = Anagrams.getPotentialAnagramsFor(input);
+
+        Assertions.assertEquals(24, resultAnagrams.size());
+        assertContains(resultAnagrams, "biro");
+        assertContains(resultAnagrams, "bior");
+        assertContains(resultAnagrams, "brio");
+        assertContains(resultAnagrams, "broi");
+        assertContains(resultAnagrams, "boir");
+        assertContains(resultAnagrams, "bori");
+
+        assertContains(resultAnagrams, "ibro");
+        assertContains(resultAnagrams, "ibor");
+        assertContains(resultAnagrams, "irbo");
+        assertContains(resultAnagrams, "irob");
+        assertContains(resultAnagrams, "iobr");
+        assertContains(resultAnagrams, "iorb");
+
+        assertContains(resultAnagrams, "rbio");
+        assertContains(resultAnagrams, "rboi");
+        assertContains(resultAnagrams, "ribo");
+        assertContains(resultAnagrams, "riob");
+        assertContains(resultAnagrams, "roib");
+        assertContains(resultAnagrams, "robi");
+
+        assertContains(resultAnagrams, "obir");
+        assertContains(resultAnagrams, "obri");
+        assertContains(resultAnagrams, "oirb");
+        assertContains(resultAnagrams, "oirb");
+        assertContains(resultAnagrams, "orbi");
+        assertContains(resultAnagrams, "orib");
+    }
+
+
     private void assertContains(List<String> resultAnagrams, String valueToBeContained) {
         Assertions.assertEquals(valueToBeContained, resultAnagrams.stream().filter(a -> a.equals(valueToBeContained)).findFirst().orElseThrow());
     }
