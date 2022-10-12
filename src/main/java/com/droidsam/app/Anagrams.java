@@ -3,6 +3,7 @@ package com.droidsam.app;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Anagrams {
     public static List<String> getPotentialAnagramsFor(String input) {
@@ -19,29 +20,33 @@ public class Anagrams {
 
     private static List<String> getAnagramsFor(char[] inputChars) {
 
+        if (inputChars.length == 1) {
+            return List.of(String.valueOf(inputChars));
+        }
+
         List<String> anagrams = new ArrayList<>();
-        if (inputChars.length == 2) {
-            anagrams.add("" + inputChars[0] + inputChars[1]);
-            anagrams.add("" + inputChars[1] + inputChars[0]);
-            return anagrams;
-        } else {
-            for (int i = 0; i < inputChars.length; i++) {
-                char c = inputChars[i];
-                getAnagramsFor(getSameArrayExceptCharAtPosition(inputChars, i)).forEach(anagram -> anagrams.add(c + anagram));
-            }
+        for (int i = 0; i < inputChars.length; i++) {
+            char anagramStartingChar = inputChars[i];
+            char[] restOfChars = dropCharAtPosition(inputChars, i);
+
+            anagrams.addAll(concatenate(anagramStartingChar, getAnagramsFor(restOfChars)));
         }
         return anagrams;
     }
 
-    private static char[] getSameArrayExceptCharAtPosition(char[] inputArray, int positionToFilter) {
-        char[] result = new char[inputArray.length - 1];
-        int resultPosition = 0;
+    private static List<String> concatenate(char prefixChar, List<String> anagramsOfRestChars) {
+        return anagramsOfRestChars.stream().map(anagram -> prefixChar + anagram).collect(Collectors.toList());
+    }
+
+    private static char[] dropCharAtPosition(char[] inputArray, int positionToFilter) {
+        char[] newArray = new char[inputArray.length - 1];
+        int newArrayIndex = 0;
         for (int i = 0; i < inputArray.length; i++) {
             if (i != positionToFilter) {
-                result[resultPosition++] = inputArray[i];
+                newArray[newArrayIndex++] = inputArray[i];
             }
         }
-        return result;
+        return newArray;
     }
 
 }
