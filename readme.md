@@ -9,4 +9,4 @@ For example, the potential anagrams of biro are:
 * `biro bior brio broi boir bori`
 * `ibro ibor irbo irob iobr iorb`
 * `rbio rboi ribo riob roib robi`
-* `obir obri oirbr oirb orbi orib`
+* `obir obri oirb oirb orbi orib`
